@@ -28,6 +28,7 @@ for line in file:
 rem = set()
 count = [0 for _ in range(len(points))]
 res = 0
+# Technically wrong, but works if points are spread well
 for x in range(mi_x, ma_x+1):
 	for y in range(mi_y, ma_y+1):
 		d = getCumDist(points, x,y)
