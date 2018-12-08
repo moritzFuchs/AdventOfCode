@@ -1,7 +1,3 @@
-import string
-from collections import defaultdict
-import heapq
-
 input = "sample.in"
 file = open(input, "r")
 
