@@ -17,7 +17,7 @@ while True:
 				print(num - pos)
 				exit(0)
 		else:
-			# no suffix of our input is a prefix of the input
+			# no substring of our input is a prefix of the input
 			pos = 0
 			if z == input[0]:
 				pos = 1
