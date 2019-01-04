@@ -16,7 +16,7 @@ center = (0,0,0)
 
 lineSegs = []
 bots = []
-#g = networkx.Graph()
+g = networkx.Graph()
 for line in file:
 	matches = re.finditer(regex, line)
 	m = re.match(regex, line)
@@ -31,10 +31,10 @@ for line in file:
 	lineSegs.append((dist-r,1))
 	lineSegs.append((dist+r+1,0))
 
-	#for bot in bots:
-#		if distance(bot, nb) <= r + bot[3]:
-#			g.add_edge(bot,nb)
-#			g.add_edge(nb,bot)
+	for bot in bots:
+		if distance(bot, nb) <= r + bot[3]:
+			g.add_edge(bot,nb)
+			g.add_edge(nb,bot)
 
 	bots.append(nb)
 lineSegs.sort()
@@ -58,26 +58,7 @@ print(res)
 # 125532606 too low
 
 # Let's try a graph/clique approach.
-#cl = max(list(networkx.find_cliques(g)), key=len)
-#print(max([distance(center, bot) - bot[3] for bot in cl]))
+cl = max(list(networkx.find_cliques(g)), key=len)
+print(max([distance(center, bot) - bot[3] for bot in cl]))
 
 # 125532606 too low
-
-
-def intersect_count(box):
-	res = 0
-	for bot in bots:
-		# get manhattan distance from bot to box
-		d = 0
-		for i in (0, 1, 2):
-		    boxlow, boxhigh = box[0][i], box[1][i] - 1
-		    d += abs(bot[i] - boxlow) + abs(bot[i] - boxhigh)
-		    d -= boxhigh - boxlow
-		d //= 2
-		if d <= bot[3]:
-			res += 1
-	return res
-
-
-
-
